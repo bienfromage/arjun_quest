@@ -1,0 +1,17 @@
+{
+	"name": "arjun_quest_1",
+	"version": "1.0.0",
+	"description": "Arjun Quest - now with a better server",
+	"main": "index.js","engines": {
+	  "node": "6.2.0"
+	},
+	"scripts": {
+		  "start": "node index.js"
+	},
+		"author": "bienfromage",
+		"license": "ISC",
+		"dependencies": {
+		"express": "^4.16.2",
+		"socket.io": "^2.0.4"
+	}
+}

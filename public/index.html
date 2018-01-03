@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Arjun Quest</title>
+		<meta charset="UTF-8">
+		<meta name="description" content="A multi-player Node.js game">
+		<meta name="keywords" content="arjun,quest,node,js">
+		<meta name="author" content="bienfromage">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		
+		<link rel="icon" href="Arjun.png" type="image/png">
+		<style>
+			@font-face {
+				font-family: pixelated;
+				src: url(Pixeled.ttf);
+				font-style:normal;
+				font-weight:normal;
+			}
+			body{
+				text-align:center;
+				font-size:25px;
+				background-color:black;
+				font-family: pixelated,monospace;
+				color:white;
+			}
+			p{
+			  background-color:white;
+			  color:black;
+			  cursor:pointer;
+			}
+			p:hover{
+			  background-color:black;
+			  color:white;
+			}
+			input{
+				margin-top:1em;
+				font-size:50px;
+				font-family:pixelated;
+				text-transform:uppercase;
+			}
+		</style>
+	</head>
+	<body>
+		<div id = 'main' style = 'text-align:center'>
+			<h1>ENTER A USERNAME</h1>
+			<input type="text" maxlength = "16" id = 'inBox' autofocus/>
+			<div style = 'text-align:center;'>
+				<p style = 'padding:10px;width:200px;margin:auto' onclick = 'start()' >GO</p>
+			</div>
+		</div>
+		
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="game_engine.js"></script>
+		<script>
+			document.getElementById("inBox")
+				.addEventListener("keyup", function(event) {
+				event.preventDefault();
+				if (event.keyCode === 13) {
+					start();
+				}
+			});
+		</script>
+	</body>
+</html>
