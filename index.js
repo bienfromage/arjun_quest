@@ -33,6 +33,10 @@ io.on('connection', (socket) => {
 			  players[i] = data;
 	  }
   });
+
+	socket.on('hit',(user)=>{
+		io.emit('hit', user);
+	});
   
   socket.on('disconnect', () => {
 	users--;
@@ -43,4 +47,6 @@ io.on('connection', (socket) => {
   });
 });
 
-setInterval(function(){io.emit('playerData',players)},50);
+setInterval(function(){
+	io.emit('playerData',players);
+},50);
