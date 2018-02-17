@@ -72,16 +72,16 @@ document.onkeydown = (e)=>{
 document.onkeyup = (e)=>{
 	e = e || window.event;
 	if(velLock === 0){
-  	if((e === 39 || e.keyCode === 39 ||e === 68 || e.keyCode === 68)&&velX!==-10){
+  	if((e === 39 || e.keyCode === 39 ||e === 68 || e.keyCode === 68)&&velX!==-4){
   		velX=0;
   		jump = 0;
-  	}else if((e === 37 || e.keyCode === 37||e === 65 || e.keyCode === 65)&&velX!==10){
+  	}else if((e === 37 || e.keyCode === 37||e === 65 || e.keyCode === 65)&&velX!==4){
   		velX=0;
   		jump = 0;
-  	}else if((e === 40 || e.keyCode === 40||e === 83 || e.keyCode === 83)&&velY!==-10){
+  	}else if((e === 40 || e.keyCode === 40||e === 83 || e.keyCode === 83)&&velY!==-4){
   		velY=0;
   		jump = 0;
-  	}else if((e === 38 || e.keyCode === 38||e === 87 || e.keyCode === 87)&&velY!==10){
+  	}else if((e === 38 || e.keyCode === 38||e === 87 || e.keyCode === 87)&&velY!==4){
   		velY=0;
   		jump = 0;
   	}
