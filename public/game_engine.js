@@ -145,7 +145,8 @@ function start(){
 	centerX = canvas.width/2-25;
 	centerY = canvas.height/2-25;
 	
-	interval = setInterval(update, 1000/60);
+	//start clock
+	interval = setInterval(update, 1000/50);
 }
 
 function update(){
@@ -278,7 +279,7 @@ function update(){
 	  for(i = 0; i < items.length; i++){
 	    ctx.drawImage(imgs[3],0,0,100,100,imageOriginX+items[i].x,imageOriginY+items[i].y,50,50);
 	    //did I find a collectable
-	    if(items[i].x<x+30 && items[i].x+30>x && items[i].y<y+30 && items[i].y+30>y){
+	    if(isAlive && items[i].x<x+30 && items[i].x+30>x && items[i].y<y+30 && items[i].y+30>y){
 	      socket.emit("collect",items[i].id);
 	      coins++;
 	    }

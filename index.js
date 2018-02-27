@@ -69,10 +69,10 @@ io.on('connection', (socket) => {
 
 setInterval(function(){
   //spawn/despawn
-  if(monsters.length > players.length*2){
-    monsters.splice(monsters.length-1,1);
-  }else if(monsters.length < players.length*2 && monsters.length < 10){
+  if(monsters.length < players.length*2 && monsters.length < 10){
     monsters.push(new Enemy(2, Math.floor(Math.random()*1550), Math.floor(Math.random()*850)));
+  }else if(players.length === 0 && monsters.length >0){
+    monsters.splice(0,monsters.length);
   }
   
   //move monsters
@@ -105,6 +105,7 @@ function Enemy(type, mx, my){
 	this.totalHealth = 100;
 	this.flip = false;
 	this.id = Math.random();
+	this.despawn = false;
 	
 	this.start = function(){
 	  switch(type){
@@ -182,11 +183,24 @@ function Enemy(type, mx, my){
 		  this.x=1600;
 		else if(this.x > 1650)
 		  this.x = 0;
-		  
-		if(this.y<-50)
+		
+		//wrap screen,
+		//if too many monsters are present, despawn instead of wrapping
+		if(this.y<-50){
 		  this.y=900;
-		else if(this.y > 950)
+		  if(monsters.length > players.length*2){
+		    for(i=0;i<monsters.length;i++){
+		      if(monsters[i].id == this.id)
+		        monsters.splice(i,1);
+		    }
+		  }
+		}else if(this.y > 950){
 		  this.y =-50;
+		  for(i=0;i<monsters.length;i++){
+		      if(monsters[i].id == this.id)
+		        monsters.splice(i,1);
+		    }
+		}
 	    
 	  if(this.velX>0)
 	    this.flip = false;
