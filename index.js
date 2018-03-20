@@ -6,7 +6,7 @@ var monsters = [];
 var items = [];
 var isDespawnRunning = false;
 
-const PORT = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+const PORT = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 
 const server = express()
   .use(express.static(__dirname+'/public'))
