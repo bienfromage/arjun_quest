@@ -6,7 +6,7 @@ var monsters = [];
 var items = [];
 var isDespawnRunning = false;
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 
 const server = express()
   .use(express.static(__dirname+'/public'))
@@ -58,21 +58,24 @@ io.on('connection', (socket) => {
 	});
   
   socket.on('disconnect', () => {
-	for(i = 0; i < players.length; i++){
-	  if(players[i].username === username)
-		  players.splice(i,1);
-	}
-	if(players.length<1)
-	  items = [];
+  	for(i = 0; i < players.length; i++){
+  	  if(players[i].username === username)
+  		  players.splice(i,1);
+  	}
   });
 });
 
 setInterval(function(){
   //spawn/despawn
   if(monsters.length < players.length*2 && monsters.length < 10){
-    monsters.push(new Enemy(2, Math.floor(Math.random()*1550), Math.floor(Math.random()*850)));
+    var axis = Math.random()
+    if(axis<0.5)
+      monsters.push(new Enemy(2, Math.floor(Math.random()*1550), 0));
+    else
+      monsters.push(new Enemy(2, 0, Math.floor(Math.random()*850)));
   }else if(players.length === 0 && monsters.length >0){
-    monsters.splice(0,monsters.length);
+    monsters = [];
+    items = []
   }
   
   //move monsters
